@@ -27,4 +27,5 @@ class App extends Component {
   }
 }
 
+console.log(Album.title);
 export default App;
