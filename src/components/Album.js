@@ -16,7 +16,6 @@ class Album extends Component {
            isPlaying: false
          };
 
-
          this.audioElement = document.createElement('audio');
          this.audioElement.src = album.songs[0].audioSrc;
   } // end constructor
@@ -34,8 +33,12 @@ class Album extends Component {
              this.audioElement.src = song.audioSrc;
              this.setState({ currentSong: song });
           }
+
           handleSongClick(song) {
+               console.log(song);
+
                const isSameSong = this.state.currentSong === song;
+               console.log(isSameSong);
                if (this.state.isPlaying && isSameSong) {
                   this.pause();
                 } else {
@@ -43,6 +46,21 @@ class Album extends Component {
                   this.play();
                 }
           }
+
+          setHoveredState(song, )
+
+          getTrackButton(song,index) {
+             if(song === this.state.currentSong && this.state.isPlaying){
+               return <span className="ion-pause"></span>;
+             }
+             else if(song == hoveredSong){
+               return <span className="ion-play"></span>;
+             }
+             else
+              return index + 1;
+          }
+
+
 
    render() {
      return (
@@ -53,7 +71,6 @@ class Album extends Component {
              <h1 id="album-title">{this.state.album.title}</h1>
              <h2 className="artist">{this.state.album.artist}</h2>
              <div id="release-info">{this.state.album.releaseInfo}</div>
-
            </div>
         </section>
         <table id="song-list">
@@ -65,8 +82,8 @@ class Album extends Component {
           <tbody>
           {this.state.album.songs.map( (song, index) =>
            <React.Fragment>
-           <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
-              <td>{index + 1}</td>
+           <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() =>this.setHoverState(song,true)} onMouseLeave ={this.setHoverState(song,false)} >
+              <td>{this.getTrackButton(song, index)}</td>
               <td>{song.title}</td>
               <td>{song.duration}</td>
            </tr>
