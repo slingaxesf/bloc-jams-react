@@ -14,7 +14,7 @@ class Album extends Component {
            album: album,
            currentSong: album.songs[0],
            isPlaying: false,
-           isHovered: null
+           hoveredSong: null
          };
 
          this.audioElement = document.createElement('audio');
@@ -49,10 +49,10 @@ class Album extends Component {
           }
 
           setHoveredSong(index){
-            this.setState({isHovered: index})
-            console.log(this.state.isHovered);
-          }
+            this.setState({hoveredSong: index}, () => {
+            console.log(this.state.hoveredSong)});
 
+          }
           getTrackButton(song,index) {
              if(song === this.state.currentSong && this.state.isPlaying){
                return <span className="ion-pause"></span>;
