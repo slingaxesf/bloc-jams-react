@@ -85,14 +85,14 @@ class Album extends Component {
           </colgroup>
           <tbody>
           {this.state.album.songs.map( (song, index) =>
-           <React.Fragment>
+
            <tr className="song" key={index} onClick={() => this.handleSongClick(song)}  onMouseEnter={() => this.setHoveredSong(index)} onMouseLeave={() => this.setHoveredSong(null)}>
               <td>{this.getTrackButton(song, index)}</td>
               <td>{song.title}</td>
               <td>{song.duration}</td>
            </tr>
 
-           </React.Fragment>
+           
          )}
          </tbody>
         </table>
