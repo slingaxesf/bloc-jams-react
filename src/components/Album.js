@@ -13,11 +13,14 @@ class Album extends Component {
          this.state = {
            album: album,
            currentSong: album.songs[0],
-           isPlaying: false
+           isPlaying: false,
+           isHovered: null
          };
 
          this.audioElement = document.createElement('audio');
          this.audioElement.src = album.songs[0].audioSrc;
+
+
   } // end constructor
          play() {
            this.audioElement.play();
@@ -35,8 +38,6 @@ class Album extends Component {
           }
 
           handleSongClick(song) {
-               console.log(song);
-
                const isSameSong = this.state.currentSong === song;
                console.log(isSameSong);
                if (this.state.isPlaying && isSameSong) {
@@ -47,13 +48,16 @@ class Album extends Component {
                 }
           }
 
-          setHoveredState(song, )
+          setHoveredSong(index){
+            this.setState({isHovered: index})
+            console.log(this.state.isHovered);
+          }
 
           getTrackButton(song,index) {
              if(song === this.state.currentSong && this.state.isPlaying){
                return <span className="ion-pause"></span>;
              }
-             else if(song == hoveredSong){
+            else if(index === this.state.hoveredSong){
                return <span className="ion-play"></span>;
              }
              else
@@ -82,7 +86,7 @@ class Album extends Component {
           <tbody>
           {this.state.album.songs.map( (song, index) =>
            <React.Fragment>
-           <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() =>this.setHoverState(song,true)} onMouseLeave ={this.setHoverState(song,false)} >
+           <tr className="song" key={index} onClick={() => this.handleSongClick(song)}  onMouseEnter={() => this.setHoveredSong(index)} onMouseLeave={() => this.setHoveredSong(null)}>
               <td>{this.getTrackButton(song, index)}</td>
               <td>{song.title}</td>
               <td>{song.duration}</td>
