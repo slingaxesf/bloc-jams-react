@@ -65,7 +65,7 @@ class Album extends Component {
           this.setSong(newSong);
           this.play();
           }
-//
+
           setHoveredSong(index){
             this.setState({hoveredSong: index});
 
