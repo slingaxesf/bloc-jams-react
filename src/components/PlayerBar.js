@@ -30,18 +30,17 @@ class PlayerBar extends Component {
        </section>
 
        <section id="volume-control">
-       <div className="volume">{this.props.currentVolume}</div>
+       <div className="volume">Volume:{this.props.volume}</div>
         <input
           type="range"
           className="volume-bar"
           name="Volume"
-          value={this.props.currentVolume}
+          value={this.props.volume}
           max="1.0"
           min="0"
           step="0.01"
           onChange={this.props.handleVolumeChange}
         />
-        <div>Volume:</div>
        </section>
       </section>
     );
